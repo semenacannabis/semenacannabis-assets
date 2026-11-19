@@ -1,0 +1,139 @@
+/* ================================
+   FILTERS UI – SemenaCannabis.cz
+   ================================ */
+
+#filters{
+  background:#fff;
+  border-radius:18px;
+  padding:18px;
+  margin-top:12px;
+}
+
+.sc-filter-title{
+  font-weight:700;
+  font-size:17px;
+  color:#2e7d32;
+  margin:6px 0 14px;
+}
+
+.sc-primary{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.sc-primary .filter-section{
+  background:#f4fff4;
+  border:2px solid #4CAF50;
+  border-radius:999px;
+  transition:all .2s ease;
+}
+
+.sc-primary .filter-section:hover{
+  background:#e6ffe6;
+  border-color:#2e7d32;
+}
+
+.sc-primary h4{
+  font-weight:700;
+  color:#1a1a1a;
+}
+
+.sc-secondary{
+  display:none;
+  margin-top:12px;
+}
+
+.sc-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:6px;
+  padding:8px 16px;
+  border-radius:999px;
+  background:#e8f3ec;
+  color:#2e7d32;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s ease;
+}
+
+.sc-toggle:hover{
+  background:#dff0e5;
+}
+/* === PODROBNÉ FILTRY – SKRÝT === */
+#filters .filter-section {
+  display: none;
+}
+
+/* === RYCHLÝ VÝBĚR (první řádek filtrů) === */
+#filters .filter-section:nth-child(-n+6) {
+  display: inline-block;
+}
+
+/* === TOGGLE TLAČÍTKO === */
+.sc-filters-toggle {
+  display: inline-block;
+  margin: 12px 0;
+  padding: 8px 18px;
+  background: #e8f3ec;
+  border-radius: 999px;
+  color: #2e7d32;
+  font-weight: 700;
+  cursor: pointer;
+}
+.sc-secondary-filter {
+  display: none !important;
+}
+
+.sc-show-secondary .sc-secondary-filter {
+  display: inline-block !important;
+}
+
+.sc-filters-toggle {
+  margin-bottom: 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #e6ffe6;
+  border: 2px solid #4caf50;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* podrobné filtry – NEPOUŽÍVAT display:none */
+.filter-section {
+  transition: opacity .2s ease;
+}
+
+/* schované */
+#filters:not(.sc-show-secondary) .filter-section {
+  opacity: 1;
+}
+
+/* co má být schované – jen vizuálně */
+#filters:not(.sc-show-secondary) .filter-section:not(.filter-section-price):not(.filter-section-thc):not(.filter-section-cbd):not(.filter-section-height):not(.filter-section-yield):not(.filter-section-flowering) {
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* po rozbalení */
+.sc-show-secondary .filter-section {
+  visibility: visible;
+  height: auto;
+  overflow: visible;
+}
+
+/* aktivní filtr – VIDITELNÝ STAV */
+.filter-section.active h4,
+.filter-section.selected h4 {
+  background: #4caf50;
+  color: #fff;
+  border-radius: 999px;
+}
+
+.filter-section.active h4::after {
+  content: " ✓";
+}

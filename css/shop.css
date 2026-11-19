@@ -1,0 +1,447 @@
+/* tmavy rezim */
+html {
+  color-scheme: only light;
+}
+
+/* kachle kategorii */
+ul.subcategories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+ul.subcategories li {
+  display: flex;
+  flex: 1 1 calc(25% - 15px);
+}
+
+ul.subcategories li a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px 10px;
+  background: #f4fff4;
+  border: 2px solid #4caf50;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  color: #1a1a1a;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  word-break: break-word;
+  transition: all 0.3s ease-in-out;
+}
+
+ul.subcategories li a:hover {
+  background: #e6ffe6;
+  border-color: #2e7d32;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  ul.subcategories li {
+    flex: 1 1 calc(50% - 15px);
+  }
+}
+
+@media (max-width: 600px) {
+  ul.subcategories li {
+    flex: 1 1 100%;
+  }
+}
+
+/* Instagram mobil */
+.instagram-section,
+.instagram-feed,
+.instagram-grid {
+  min-height: 1px;
+}
+
+.instagram-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .instagram-section,
+  .instagram-feed,
+  .instagram-grid {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .instagram-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .instagram-grid img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+}
+
+/* menu nad hledanim */
+.top-navigation-bar-menu-helper {
+  z-index: 500 !important;
+  background: #fff !important;
+  min-width: 250px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+  border: 1px solid #e3e3e3;
+}
+
+.top-navigation-bar-menu-helper li a {
+  white-space: nowrap;
+}
+
+/* zelena lista */
+@media (min-width: 768px) {
+  .navigation-in,
+  .desktop #navigation .menu-level-1 > li > a,
+  .menu-item-924 > a {
+    background: #2a7d46 !important;
+    background-color: #2a7d46 !important;
+    color: #fff !important;
+  }
+}
+
+/* mobil sirka + sipka */
+@media (max-width: 767px) {
+  .overall-wrapper,
+  .container,
+  .content-wrapper,
+  .content-wrapper-in,
+  #content,
+  .category-top,
+  .category-perex {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  ul.subcategories {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  ul.subcategories li {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
+
+  .goToTop {
+    position: fixed !important;
+    left: 12px !important;
+    right: auto !important;
+    bottom: 72px !important;
+    width: auto !important;
+    z-index: 1000000 !important;
+  }
+}
+
+/* datum recenze na produktu */
+.hodnoceni .vote-rating,
+.vote-rating {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.hodnoceni .vote-header,
+.hodnoceni .vote-summary {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+.hodnoceni .vote-time {
+  display: block !important;
+  position: relative !important;
+  z-index: 2 !important;
+  margin-top: 6px !important;
+  color: #666 !important;
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+}
+
+/* vyprodej pruh */
+.sale-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: auto;
+  max-width: 100%;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(90deg, #ff4d4d, #ff1a1a);
+  box-shadow: 0 -2px 5px #0003;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.sale-bar[hidden],
+body.ordering-process .sale-bar {
+  display: none !important;
+}
+
+.sale-bar-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sale-bar-btn {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  background: #fff;
+  border-radius: 6px;
+  color: #d40000 !important;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.sale-bar-btn:hover {
+  background: #f2f2f2;
+  color: #a00000 !important;
+}
+
+.sale-bar-close {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  background: 0;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .sale-bar {
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 8px 42px calc(8px + env(safe-area-inset-bottom)) 10px;
+    font-size: 13px;
+    overflow: hidden;
+  }
+
+  .sale-bar-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .sale-bar-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .sale-bar-close {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+  }
+}
+
+/* bannery 2x2 */
+@media (max-width: 767px) {
+  .benefitBanner.position--benefitHomepage {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    padding: 4px 8px !important;
+  }
+
+  .benefitBanner.position--benefitHomepage .benefitBanner__item,
+  .benefitBanner.position--benefitHomepage .benefitBanner__img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* recenze HP: 4 karty na šířku sloupce */
+.r {
+  width: 100%;
+  max-width: none;
+  margin: 8px 0 18px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.r-l {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.r-c {
+  display: block;
+  background: #fff;
+  border: 1px solid #d7eadb;
+  border-radius: 14px;
+  padding: 14px;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.r-c:hover {
+  border-color: #2a7d46;
+}
+
+.r-nm {
+  font-weight: 800;
+  color: #2a7d46;
+}
+
+.r-t {
+  color: #777;
+  font-size: 13px;
+  margin: 2px 0 8px;
+}
+
+.r-x {
+  margin: 0;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+@media (max-width: 991px) {
+  .r-l {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .r-l {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* THC, Sativa, Indica na nahledu */
+.product a.image {
+  position: relative;
+}
+
+.sc-genes {
+  position: absolute;
+  z-index: 4;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  pointer-events: none;
+}
+
+.sc-genes span {
+  max-width: 100%;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #2a7d46;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* stranka Hodnoceni obchodu (13. 11. 2026) */
+.in-hodnoceni-obchodu h1{font-weight:800;color:#1c2b23}.in-hodnoceni-obchodu .rate-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:24px 40px;background:#2a7d46;color:#fff;border-radius:18px;padding:24px 28px;margin:10px 0 18px}.in-hodnoceni-obchodu .rate-average-wrap{flex:0 0 auto}.in-hodnoceni-obchodu .rate-average{color:#fff;font-size:64px;font-weight:800;line-height:1}.in-hodnoceni-obchodu .rate-average-wrap .stars-label{color:#e6f4ea;font-size:15px;font-weight:700}.in-hodnoceni-obchodu .rate-average-wrap .star{filter:brightness(0) invert(1)}.in-hodnoceni-obchodu .votes{flex:1 1 320px;min-width:0}.in-hodnoceni-obchodu .rate-list{margin:3px 0}.in-hodnoceni-obchodu .rate-list .rate-value{color:#fff;font-weight:700}.in-hodnoceni-obchodu .rate-list .star{filter:brightness(0) invert(1);opacity:.85}.in-hodnoceni-obchodu .rate-bar::before,.in-hodnoceni-obchodu .rate-bar::after{background:#f2b01e!important;border-radius:8px}.in-hodnoceni-obchodu .rate-count{color:#fff!important;font-weight:700}.in-hodnoceni-obchodu .add-comment{margin:0 0 22px}.in-hodnoceni-obchodu .add-comment .btn{background:#2a7d46!important;border-color:#2a7d46!important;color:#fff!important;border-radius:24px;padding:10px 22px;font-weight:700;font-size:15px}.in-hodnoceni-obchodu .add-comment .btn:hover{background:#23693b!important}.in-hodnoceni-obchodu .vote-form{background:#f4fbf5;border:1px solid #d7eadb;border-radius:16px;padding:20px;margin-bottom:22px}.in-hodnoceni-obchodu #ratingsList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;border:0}.in-hodnoceni-obchodu #ratingsList .vote-wrap{background:#fff;border:1px solid #d7eadb!important;border-radius:16px;padding:16px 18px;margin:0;box-shadow:0 1px 3px rgba(28,43,35,.04)}.in-hodnoceni-obchodu #ratingsList .vote-wrap:hover{border-color:#2a7d46!important}.in-hodnoceni-obchodu .vote-name{font-weight:800;color:#2a7d46}.in-hodnoceni-obchodu .vote-time{color:#888}.in-hodnoceni-obchodu .vote-content{color:#333;font-size:15px;line-height:1.55;margin-top:8px}.in-hodnoceni-obchodu .pagination{margin-top:20px}.in-hodnoceni-obchodu .pagination .btn{border-radius:24px}@media(max-width:767px){ .in-hodnoceni-obchodu .rate-wrap{padding:18px;gap:14px;border-radius:14px} .in-hodnoceni-obchodu .rate-average{font-size:48px} .in-hodnoceni-obchodu #ratingsList{grid-template-columns:1fr} .in-hodnoceni-obchodu .add-comment .btn{width:100%}}.in-hodnoceni-obchodu .rate-average-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.in-hodnoceni-obchodu .rate-star-wrap{display:flex;flex-direction:column;gap:6px}.in-hodnoceni-obchodu .rate-star-wrap .stars-label{position:static!important;display:block;margin:0;transform:none!important}.in-hodnoceni-obchodu .rate-bar{background:#f2b01e!important;height:10px!important;min-width:6px}.in-hodnoceni-obchodu #ratingsList .vote-wrap .vote-wrap{background:#f4fbf5;border-color:#d7eadb!important;margin-top:10px;box-shadow:none}
+
+/* ===== SC filtry (náhrada Filtry+) ===== */
+/* SC filtry – vlastní vzhled filtrů Shoptetu (náhrada doplňku Filtry+) */
+.scf { --g: #2a7d46; --g2: #1c5a32; --gl: #f3faf5; --gb: #d5ecdc; --t: #1c2b23; font-family: Ubuntu, sans-serif; position: relative; }
+.scf .scf-row { display: flex; flex-wrap: wrap; gap: 8px; position: relative; }
+.scf .filter-sections { display: contents; }
+.scf .filter-section-count { display: none; }
+.scf .scf-sec { position: static; margin: 0; padding: 0; border: 0; }
+.scf .scf-sec > h4 { margin: 0; cursor: pointer; user-select: none; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; line-height: 1; padding: 11px 14px; border-radius: 999px; transition: background .15s, border-color .15s, color .15s; }
+.scf .scf-sec > h4 .question-tooltip { display: none; }
+.scf .scf-sec > h4:after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); margin-left: 4px; transition: transform .2s; }
+.scf .scf-sec.scf-open > h4:after { transform: rotate(-135deg) translateY(-2px); }
+.scf .scf-n { display: inline-block; min-width: 18px; padding: 2px 6px; border-radius: 999px; font-size: 11px; text-align: center; }
+.scf .scf-body { display: none; position: absolute; left: 0; right: 0; top: calc(100% + 10px); z-index: 30; padding: 18px 20px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.12); }
+.scf .scf-sec.scf-open .scf-body { display: block; }
+.scf .scf-desc { margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #555; max-width: 760px; }
+.scf .scf-body fieldset { display: flex; flex-wrap: wrap; gap: 8px; border: 0; margin: 0; padding: 0; }
+.scf .scf-body fieldset > div { margin: 0; }
+.scf .scf-body input[type=checkbox] { position: absolute; opacity: 0; pointer-events: none; }
+.scf .scf-body label.filter-label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 14px; padding: 8px 12px; border-radius: 10px; border: 1px solid #ddd; background: #fff; color: var(--t); transition: all .15s; }
+.scf .scf-body label.filter-label:hover { border-color: var(--g); }
+.scf .scf-body input:checked + label.filter-label { background: var(--g); border-color: var(--g); color: #fff; }
+.scf .scf-body label.disabled, .scf .scf-body input:disabled + label { opacity: .4; pointer-events: none; }
+.scf .filter-count { font-size: 11.5px; color: #888; }
+.scf .scf-body input:checked + label .filter-count { color: #d5ecdc; }
+.scf .scf-foot { display: flex; justify-content: flex-end; margin-top: 14px; }
+.scf .scf-done { border: 0; cursor: pointer; background: var(--g); color: #fff; font-weight: 700; padding: 10px 18px; border-radius: 999px; font-size: 14px; }
+.scf .scf-active { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; align-items: center; font-size: 13px; }
+.scf .scf-active:empty { display: none; }
+.scf .scf-chip { cursor: pointer; border: 0; background: var(--gl); color: var(--g2); border-radius: 999px; padding: 6px 10px; font-size: 13px; font-weight: 700; }
+.scf .scf-chip:after { content: " ×"; }
+.scf .scf-total { margin-top: 10px; font-size: 13px; color: #555; }
+.scf .scf-total strong { color: var(--g); }
+.scf .scf-mobbtn { display: none; }
+
+/* VARIANTA A – světlé pilulky jako fakta v kategoriích */
+.scf-a .scf-sec > h4 { background: #fff; border: 1px solid var(--gb); color: var(--t); }
+.scf-a .scf-sec > h4:hover, .scf-a .scf-sec.scf-open > h4 { border-color: var(--g); background: var(--gl); }
+.scf-a .scf-sec.scf-has > h4 { border-color: var(--g); color: var(--g2); }
+.scf-a .scf-n { background: var(--g); color: #fff; }
+.scf-a .scf-body { background: #fff; border: 1px solid var(--gb); }
+
+/* VARIANTA B – plná zelená tlačítka jako typy v kategoriích */
+.scf-b .scf-sec > h4 { background: var(--g); border: 1px solid var(--g); color: #fff; text-transform: uppercase; letter-spacing: .3px; font-size: 13px; }
+.scf-b .scf-sec > h4:hover, .scf-b .scf-sec.scf-open > h4 { background: #246b3c; }
+.scf-b .scf-n { background: #fff; color: var(--g); }
+.scf-b .scf-body { background: var(--gl); border: 1px solid var(--gb); border-top: 4px solid var(--g); }
+
+/* VARIANTA C – skupiny podle témat */
+.scf-c .scf-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 0; border-bottom: 1px solid #eee; }
+.scf-c .scf-gname { flex: 0 0 150px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #888; }
+.scf-c .scf-sec > h4 { background: transparent; border: 0; color: var(--t); padding: 8px 10px; border-radius: 8px; }
+.scf-c .scf-sec > h4:hover, .scf-c .scf-sec.scf-open > h4 { background: var(--gl); color: var(--g2); }
+.scf-c .scf-sec.scf-has > h4 { color: var(--g); text-decoration: underline; text-underline-offset: 4px; }
+.scf-c .scf-n { background: var(--g); color: #fff; }
+.scf-c .scf-body { background: #fff; border: 1px solid var(--gb); }
+
+/* MOBIL – jedno tlačítko „Filtrovat“, filtry pod sebou, každý se otevře celý */
+@media (max-width: 767px) {
+  .scf .scf-mobbtn { display: flex; width: 100%; justify-content: center; gap: 8px; border: 0; background: var(--g); color: #fff; font-weight: 700; font-size: 15px; padding: 13px; border-radius: 12px; cursor: pointer; }
+  .scf .scf-row, .scf-c .scf-groups { display: none; }
+  .scf.scf-mob-open .scf-row, .scf-c.scf-mob-open .scf-groups { display: block; margin-top: 10px; }
+  .scf-c .scf-group { display: block; padding: 0; border: 0; }
+  .scf-c .scf-gname { display: none; }
+  .scf-c .scf-group + .scf-group { margin-top: 14px; }
+  .scf .scf-sec { border-bottom: 1px solid #eee; }
+  .scf .scf-sec > h4 { display: flex; width: 100%; justify-content: space-between; box-sizing: border-box; border-radius: 0 !important; border: 0 !important; background: #fff !important; color: var(--t) !important; text-transform: none !important; font-size: 15px; padding: 15px 4px; }
+  .scf .scf-sec > h4:after { margin-left: auto; }
+  .scf .scf-body { position: static; box-shadow: none; border: 0 !important; padding: 0 4px 16px; background: #fff !important; }
+}
+/* VARIANTA D – vzhled A, pořadí podle témat */
+.scf-d .scf-sep { width: 1px; align-self: stretch; background: #d5ecdc; margin: 4px 6px; }
+@media (max-width: 767px) { .scf-d .scf-sep { display: block; width: auto; height: 10px; background: none; margin: 0; } }
+/* přebití stylů šablony */
+.scf .scf-body .advanced-filters-wrapper:empty { display: none !important; }
+.scf .scf-body fieldset { display: flex !important; flex-wrap: wrap !important; gap: 8px !important; }
+.scf .scf-body fieldset > div { float: none !important; width: auto !important; display: block !important; margin: 0 !important; padding: 0 !important; flex: 0 0 auto !important; }
+.scf .scf-body label.filter-label { padding: 8px 12px !important; margin: 0 !important; line-height: 1.2 !important; }
+.scf .scf-body label.filter-label:before, .scf .scf-body label.filter-label:after { display: none !important; content: none !important; }
