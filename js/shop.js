@@ -787,8 +787,8 @@
     root.querySelectorAll('.scf-sec').forEach(function (s) {
       var foot = s.querySelector('.scf-foot'); if (!foot) return; foot.querySelectorAll('.scf-btn2').forEach(function (b) { b.remove(); });
       var prev; try { prev = sessionStorage.getItem('scf-prev'); } catch (x) {}
-      if (prev && prev !== location.href && prev.split('#')[0].indexOf(base().split('?')[0]) === 0) foot.insertBefore(btn('← Zpět', function () { try { sessionStorage.removeItem('scf-prev'); } catch (x) {} location.href = prev; }), foot.firstChild);
-      if (s.querySelector('input[type=checkbox]:checked')) foot.insertBefore(btn('Vymazat filtr', function () { clearSec(s); }), foot.lastChild);
+      if (!foot.querySelector('.scf-back') && prev && prev !== location.href && prev.split('#')[0].indexOf(base().split('?')[0]) === 0) foot.insertBefore(btn('← Zpět', function () { try { sessionStorage.removeItem('scf-prev'); } catch (x) {} location.href = prev; }), foot.firstChild);
+      if (!foot.querySelector('.scf-clr') && s.querySelector('input[type=checkbox]:checked')) foot.insertBefore(btn('Vymazat filtr', function () { clearSec(s); }), foot.lastChild);
     });
     var act = root.querySelector('.scf-active');
     document.querySelectorAll('.scf-clear').forEach(function (b) { b.remove(); }); if (act && act.querySelector('.scf-chip') && !act.querySelector('.scf-clrall')) { var c = document.createElement('button'); c.type = 'button'; c.className = 'scf-clear'; c.textContent = 'Vymazat vše'; c.addEventListener('click', function () { go(base()); }); act.appendChild(c); }
