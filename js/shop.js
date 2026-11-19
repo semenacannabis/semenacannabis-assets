@@ -799,3 +799,98 @@
   var orig = window.scFiltry; if (orig) window.scFiltry = function (r) { orig(r); add(r); };
   add(document.querySelector('.scf'));
 })();
+
+/* SC filtry – posuvník rozsahu pro THC a CBD (hodnoty zůstávají i jako dlaždice) */
+(function () {
+  var NAMES = ['THC', 'CBD'];
+  var css = '.scf-range{margin:0 0 14px;padding:12px 14px 14px;border:1px solid #d7eadb;border-radius:12px;background:#f7fdf9}' +
+    '.scf-range-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 10px;font-size:14px;color:#444}' +
+    '.scf-range-val{font-weight:700;color:#1c2b23;font-size:16px}' +
+    '.scf-range-track{position:relative;height:24px}' +
+    '.scf-range-track:before{content:"";position:absolute;left:0;right:0;top:10px;height:4px;border-radius:4px;background:#d7eadb}' +
+    '.scf-range-fill{position:absolute;top:10px;height:4px;border-radius:4px;background:#2a7d46}' +
+    '.scf-range input[type=range]{position:absolute;left:0;top:0;width:100%;height:24px;margin:0;background:none;pointer-events:none;-webkit-appearance:none;appearance:none}' +
+    '.scf-range input[type=range]::-webkit-slider-runnable-track{height:24px;background:none;border:0}' +
+    '.scf-range input[type=range]::-moz-range-track{background:none;border:0}' +
+    '.scf-range input[type=range]::-webkit-slider-thumb{pointer-events:auto;-webkit-appearance:none;width:24px;height:24px;margin-top:0;border-radius:50%;background:#fff;border:3px solid #2a7d46;box-shadow:0 1px 4px rgba(0,0,0,.2);cursor:pointer}' +
+    '.scf-range input[type=range]::-moz-range-thumb{pointer-events:auto;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid #2a7d46;box-shadow:0 1px 4px rgba(0,0,0,.2);cursor:pointer}' +
+    '.scf-range input[type=range]:focus{outline:none}' +
+    '.scf-range-ends{display:flex;justify-content:space-between;font-size:12px;color:#777;margin:2px 0 10px}' +
+    '.scf-range-go{display:block;width:100%;padding:10px 12px;border:0;border-radius:10px;background:#2a7d46;color:#fff;font-weight:700;font-size:15px;cursor:pointer}' +
+    '.scf-range-go:hover{background:#246b3c}.scf-range-go[disabled]{background:#9cc5aa;cursor:default}';
+  var st = document.createElement('style'); st.textContent = css; (document.head || document.documentElement).appendChild(st);
+
+  function num(t) { t = t.trim().replace(',', '.'); var m = t.match(/(<)?\s*(\d+(?:\.\d+)?)/); return m ? parseFloat(m[2]) - (m[1] ? 0.001 : 0) : NaN; }
+  function fmt(it) { return it.label.replace(/\s+/g, ' ').replace(/^<\s*/, 'pod ').replace(/^≤\s*/, 'do '); }
+
+  function build(s) {
+    var body = s.querySelector('.scf-body'); if (!body || body.querySelector('.scf-range')) return;
+    var items = [];
+    body.querySelectorAll('input[type=checkbox][data-filter-code="pv"]').forEach(function (i) {
+      var l = body.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(i.id) : i.id) + '"]'); if (!l) return;
+      var t = l.childNodes[0] ? l.childNodes[0].textContent : l.textContent, v = num(t); if (isNaN(v)) return;
+      var c = l.querySelector('.filter-count'), cnt = c ? parseInt(c.textContent.replace(/\D/g, ''), 10) || 0 : 0;
+      items.push({ v: v, label: t.trim(), id: i.id.replace(/\D/g, ''), fid: i.getAttribute('data-filter-id'), on: i.checked, cnt: cnt });
+    });
+    if (items.length < 4) return;
+    items.sort(function (a, b) { return a.v - b.v; });
+    var n = items.length, lo = 0, hi = n - 1, onIdx = [];
+    items.forEach(function (it, k) { if (it.on) onIdx.push(k); });
+    if (onIdx.length) { lo = onIdx[0]; hi = onIdx[onIdx.length - 1]; }
+    var start = lo + ',' + hi, fid = items[0].fid;
+    var w = document.createElement('div'); w.className = 'scf-range';
+    w.innerHTML = '<div class="scf-range-top"><span>Rozsah</span><span class="scf-range-val"></span></div>' +
+      '<div class="scf-range-track"><div class="scf-range-fill"></div>' +
+      '<input type="range" min="0" max="' + (n - 1) + '" step="1" value="' + lo + '" aria-label="' + s.getAttribute('data-name') + ' od">' +
+      '<input type="range" min="0" max="' + (n - 1) + '" step="1" value="' + hi + '" aria-label="' + s.getAttribute('data-name') + ' do"></div>' +
+      '<div class="scf-range-ends"><span>' + fmt(items[0]) + '</span><span>' + fmt(items[n - 1]) + '</span></div>' +
+      '<button type="button" class="scf-range-go"></button>';
+    var r = w.querySelectorAll('input[type=range]'), val = w.querySelector('.scf-range-val'), fill = w.querySelector('.scf-range-fill'), go = w.querySelector('.scf-range-go');
+    function upd(e) {
+      var a = +r[0].value, b = +r[1].value;
+      if (a > b) { if (e && e.target === r[0]) { r[0].value = b; a = b; } else { r[1].value = a; b = a; } }
+      val.textContent = a === b ? fmt(items[a]) : fmt(items[a]) + ' – ' + fmt(items[b]);
+      fill.style.left = (n > 1 ? a / (n - 1) * 100 : 0) + '%'; fill.style.width = (n > 1 ? (b - a) / (n - 1) * 100 : 100) + '%';
+      var sum = 0; for (var k = a; k <= b; k++) sum += items[k].cnt;
+      var same = (a + ',' + b) === start;
+      go.disabled = same; go.textContent = same ? 'Posuň a vyber rozsah' : 'Zobrazit' + (sum ? ' (' + sum + ')' : '');
+      r[0].style.zIndex = a === n - 1 ? 3 : 1; r[1].style.zIndex = 2;
+    }
+    r[0].addEventListener('input', upd); r[1].addEventListener('input', upd);
+    /* Shoptet filtry poslouchají change na všech inputech ve filtru a jinak by přesměrovaly na …/null/ */
+    ['change', 'input', 'click'].forEach(function (ev) { w.addEventListener(ev, function (e) { e.stopPropagation(); }); });
+    go.addEventListener('click', function () {
+      var a = +r[0].value, b = +r[1].value, ids = [];
+      for (var k = a; k <= b; k++) ids.push(items[k].id);
+      var u = new URL(location.href); u.searchParams.delete('page');
+      u.pathname = u.pathname.replace(/\/strana-\d+\/?$/, '/');
+      if (a === 0 && b === n - 1) u.searchParams.delete('pv' + fid); else u.searchParams.set('pv' + fid, ids.join(','));
+      try { sessionStorage.setItem('scf-prev', location.href); sessionStorage.setItem('scf-keep', s.getAttribute('data-name')); } catch (x) {}
+      location.href = u.toString().replace(/%2C/gi, ',');
+    });
+    var desc = body.querySelector('.scf-desc');
+    body.insertBefore(w, desc ? desc.nextSibling : body.firstChild);
+    upd();
+    s.__scfRange = { items: items, on: onIdx, fid: fid };
+  }
+  /* souvislý rozsah (3+ hodnot) = jeden štítek „THC: 20 % – 31 %“ místo dvanácti */
+  function chip(s) {
+    var d = s.__scfRange, nm = s.getAttribute('data-name'), act = document.querySelector('.scf-active');
+    if (!d || !act || act.querySelector('.scf-chip-range[data-name="' + nm + '"]')) return;
+    var on = d.on; if (on.length < 3 || on[on.length - 1] - on[0] + 1 !== on.length) return;
+    var old = [].filter.call(act.querySelectorAll('.scf-chip:not(.scf-clrall)'), function (b) { return b.textContent.indexOf(nm + ': ') === 0; });
+    if (!old.length) return;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'scf-chip scf-chip-range'; b.setAttribute('data-name', nm);
+    b.textContent = nm + ': ' + fmt(d.items[on[0]]) + ' – ' + fmt(d.items[on[on.length - 1]]);
+    b.addEventListener('click', function () {
+      var u = new URL(location.href); u.searchParams.delete('pv' + d.fid); u.searchParams.delete('page');
+      try { sessionStorage.setItem('scf-prev', location.href); } catch (x) {}
+      location.href = u.toString().replace(/%2C/gi, ',');
+    });
+    act.insertBefore(b, old[0]); old.forEach(function (o) { o.remove(); });
+  }
+  function all() { NAMES.forEach(function (nm) { document.querySelectorAll('.scf-sec[data-name="' + nm + '"]').forEach(function (s) { build(s); chip(s); }); }); }
+  var orig = window.scFiltry; if (orig) window.scFiltry = function (r) { orig(r); all(); };
+  var t; new MutationObserver(function () { clearTimeout(t); t = setTimeout(all, 80); }).observe(document.documentElement, { childList: true, subtree: true });
+  if (document.readyState !== 'loading') all(); else document.addEventListener('DOMContentLoaded', all);
+})();
