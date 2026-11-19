@@ -791,7 +791,7 @@
       if (s.querySelector('input[type=checkbox]:checked')) foot.insertBefore(btn('Vymazat filtr', function () { clearSec(s); }), foot.lastChild);
     });
     var act = root.querySelector('.scf-active');
-    if (act && act.children.length && !act.querySelector('.scf-clear')) { var c = document.createElement('button'); c.type = 'button'; c.className = 'scf-clear'; c.textContent = 'Vymazat vše'; c.addEventListener('click', function () { go(base()); }); act.appendChild(c); }
+    document.querySelectorAll('.scf-clear').forEach(function (b) { b.remove(); }); if (act && act.querySelector('.scf-chip')) { var c = document.createElement('button'); c.type = 'button'; c.className = 'scf-clear'; c.textContent = 'Vymazat vše'; c.addEventListener('click', function () { go(base()); }); act.appendChild(c); }
     root.setAttribute('data-scf-btns', root.querySelectorAll('.scf-sec').length + '');
   }
   // zapamatovat stav před každým výběrem (pro Zpět)
