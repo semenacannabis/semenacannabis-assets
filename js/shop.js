@@ -771,7 +771,7 @@
 })();
 /* SC filtry – tlačítka Zpět / Vymazat filtr / Vymazat vše */
 (function () {
-  var css = '.scf .scf-foot{gap:8px;flex-wrap:wrap}.scf .scf-btn2{border:1px solid #2a7d46;background:#fff;color:#2a7d46;font-weight:700;padding:9px 16px;border-radius:999px;font-size:14px;cursor:pointer}.scf .scf-btn2:hover{background:#f3faf5}.scf .scf-active .scf-clear{border:0;background:none;color:#c62828;font-weight:700;font-size:13px;cursor:pointer;text-decoration:underline;padding:6px 4px}.scf .scf-body input:checked+label .filter-count{background:transparent!important;color:#d5ecdc!important}';
+  var css = '.scf .scf-body label.filter-label:hover{background:#e3f3e8!important;border-color:#2a7d46!important;color:#1c5a32!important}.scf .scf-body input:checked+label.filter-label:hover{background:#246b3c!important;color:#fff!important}.scf .scf-foot{gap:8px;flex-wrap:wrap}.scf .scf-btn2{border:1px solid #2a7d46;background:#fff;color:#2a7d46;font-weight:700;padding:9px 16px;border-radius:999px;font-size:14px;cursor:pointer}.scf .scf-btn2:hover{background:#f3faf5}.scf .scf-active .scf-clear{border:0;background:none;color:#c62828;font-weight:700;font-size:13px;cursor:pointer;text-decoration:underline;padding:6px 4px}.scf .scf-body input:checked+label .filter-count{background:transparent!important;color:#d5ecdc!important}';
   var st = document.createElement('style'); st.textContent = css; (document.head || document.documentElement).appendChild(st);
   function base() { var p = location.pathname.split(':')[0]; if (p.slice(-1) !== '/') p += '/'; return location.origin + p; }
   function go(u) { try { sessionStorage.setItem('scf-prev', location.href); } catch (x) {} location.href = u; }
