@@ -611,7 +611,7 @@
     ['Základ', ['Cena', 'Značky', 'Značka', 'Počet semen', 'Na skladě a další']],
     ['Genetika', ['Indica', 'Sativa', 'Ruderalis', 'USA genetika', 'Vítěz Cannabis Cup', 'Vlastnosti']],
     ['Kanabinoidy', ['THC', 'CBD', 'CBG']],
-    ['Odrůda', ['Doba květu (indoor)', 'Doba květu (outdoor)', 'Výnos (indoor)', 'Výnos (outdoor)', 'Výška', 'Náročnost']],
+    ['Odrůda', ['Doba květu (indoor)', 'Doba květu (outdoor)', 'Výnos (indoor)', 'Výnos (outdoor)', 'Výška INDOOR', 'Výška (indoor)', 'Výška OUTDOOR', 'Výška (outdoor)', 'Výška', 'Náročnost']],
     ['Vůně a chuť', ['Terpeny', 'Terpenový profil']]
   ];
   var HIDE = ['10', 'Značka']; // 10 = skrytý parametr pro vyhledávání, Značka = duplicita k Značky // skrytý parametr pro vyhledávání – ve filtrech nezobrazovat
