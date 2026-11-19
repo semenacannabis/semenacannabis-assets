@@ -785,7 +785,7 @@
   function add(root) {
     if (!root || root.getAttribute('data-scf-btns') === root.querySelectorAll('.scf-sec').length + '') return;
     root.querySelectorAll('.scf-sec').forEach(function (s) {
-      var foot = s.querySelector('.scf-foot'); if (!foot || foot.querySelector('.scf-btn2')) return;
+      var foot = s.querySelector('.scf-foot'); if (!foot) return; foot.querySelectorAll('.scf-btn2').forEach(function (b) { b.remove(); });
       var prev; try { prev = sessionStorage.getItem('scf-prev'); } catch (x) {}
       if (prev && prev !== location.href && prev.split('#')[0].indexOf(base().split('?')[0]) === 0) foot.insertBefore(btn('← Zpět', function () { try { sessionStorage.removeItem('scf-prev'); } catch (x) {} location.href = prev; }), foot.firstChild);
       if (s.querySelector('input[type=checkbox]:checked')) foot.insertBefore(btn('Vymazat filtr', function () { clearSec(s); }), foot.lastChild);
