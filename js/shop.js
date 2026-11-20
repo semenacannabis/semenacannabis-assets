@@ -614,7 +614,7 @@
     ['Odrůda', ['Doba květu (indoor)', 'Doba květu (outdoor)', 'Výnos (indoor)', 'Výnos (outdoor)', 'Výška INDOOR', 'Výška (indoor)', 'Výška OUTDOOR', 'Výška (outdoor)', 'Výška', 'Náročnost']],
     ['Vůně a chuť', ['Terpeny', 'Terpenový profil']]
   ];
-  var HIDE = ['10', 'Značka']; // 10 = skrytý parametr pro vyhledávání, Značka = duplicita k Značky // skrytý parametr pro vyhledávání – ve filtrech nezobrazovat
+  var HIDE = ['10', 'Značka', 'Náročnost']; // 10 = skrytý parametr pro vyhledávání, Značka = duplicita k Značky // skrytý parametr pro vyhledávání – ve filtrech nezobrazovat
   function txt(h) { var s = h.querySelector('span'); return (s ? s.textContent : h.textContent).trim(); }
   function init(root) {
     if (root.getAttribute('data-scf')) return; root.setAttribute('data-scf', '1');
